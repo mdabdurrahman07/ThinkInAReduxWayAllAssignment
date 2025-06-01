@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import InputCard from './components/InputCard/InputCard';
+import OutputCard from './components/OutputCard/OutputCard';
 
 const App = () => {
   return (
@@ -9,6 +10,8 @@ const App = () => {
       <Header/>
       {/* Input Section */}
       <InputCard/>
+      {/* Output Section */}
+      <OutputCard/>
     </main>
   );
 };
