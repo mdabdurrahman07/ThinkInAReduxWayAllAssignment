@@ -1,10 +1,15 @@
 import React from 'react';
+import Header from './components/Header/Header';
+import InputCard from './components/InputCard/InputCard';
 
 const App = () => {
   return (
-    <div>
-      Hello World
-    </div>
+    <main>
+      {/* header section */}
+      <Header/>
+      {/* Input Section */}
+      <InputCard/>
+    </main>
   );
 };
 
