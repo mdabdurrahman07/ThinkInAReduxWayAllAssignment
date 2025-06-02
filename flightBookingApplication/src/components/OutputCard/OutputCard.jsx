@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteBooking } from "../../redux/features/booking/bookingSlice";
 
 const OutputCard = () => {
+  const dispatch = useDispatch()
   const bookingValue = useSelector((state) => state.booking.bookings);
 
   return (
@@ -19,9 +21,9 @@ const OutputCard = () => {
             </tr>
           </thead>
           {bookingValue?.length >= 1 ? (
-            bookingValue.map((bookingItems, i) => (
+            bookingValue.map((bookingItems) => (
               <tbody
-                key={i}
+                key={bookingItems.id}
                 class="divide-y divide-gray-300/20"
                 id="lws-previewBooked"
               >
@@ -47,7 +49,7 @@ const OutputCard = () => {
                   </td>
                   <td class="px-6 py-4 text-center">
                     <div class="flex justify-center gap-4">
-                      <button class="lws-remove">
+                      <button class="lws-remove" onClick={() => dispatch(deleteBooking(bookingItems?.id))}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

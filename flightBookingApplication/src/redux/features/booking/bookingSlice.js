@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
   bookings: [],
 };
@@ -8,7 +8,13 @@ export const bookingSlice = createSlice({
 
   reducers: {
     addBooking: (state, action) => {
-      state.bookings.push(action.payload);
+      state.bookings.push({ id: nanoid(), ...action.payload });
+    },
+    deleteBooking: (state, action) => {
+      const deleteItemId = action.payload;
+      state.bookings = state.bookings.filter(
+        (booking) => booking.id !== deleteItemId
+      );
     },
     clearBookings: (state) => {
       state.bookings = [];
@@ -31,6 +37,7 @@ export const bookingSlice = createSlice({
   },
 });
 
-export const { addBooking, clearBookings } = bookingSlice.actions;
+export const { addBooking, deleteBooking, clearBookings } =
+  bookingSlice.actions;
 
 export default bookingSlice.reducer;
