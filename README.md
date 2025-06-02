@@ -13,4 +13,4 @@ In this Github repo I'm giving all of my LWS assignment solution and live projec
 
 Flightbooking Application
 
-- [Live Link](https://flight-booking-application-qp8thvyl6.vercel.app/)
+- [Live Link](https://flight-booking-application-brown.vercel.app/)
