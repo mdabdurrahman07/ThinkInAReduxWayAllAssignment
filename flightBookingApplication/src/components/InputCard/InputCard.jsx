@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from "../../redux/features/booking/bookingSlice";
 const InputCard = () => {
   const dispatch = useDispatch();
+  const bookingValue = useSelector((state) => state.booking.bookings);
+
+  const isDisabled = bookingValue.length >= 3;
 
   const [formData, setFormData] = useState({
     from: "",
@@ -137,7 +140,7 @@ const InputCard = () => {
               </div>
             </div>
 
-            <button class="addCity" type="submit" id="lws-addCity">
+            <button class="addCity" type="submit" id="lws-addCity" disabled={isDisabled}>
               <svg
                 width="15px"
                 height="15px"
@@ -152,7 +155,7 @@ const InputCard = () => {
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-              <span class="text-sm">Book</span>
+              <span class="text-sm"> {isDisabled ? 'Booking Limit Reached' : 'Book'}</span>
             </button>
           </form>
         </div>
