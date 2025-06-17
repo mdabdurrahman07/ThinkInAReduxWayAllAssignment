@@ -1,3 +1,4 @@
+import logo from "../assets/images/logo.png"
 const Header = ({ onNavigate }) => {
   return (
     <>
@@ -10,7 +11,7 @@ const Header = ({ onNavigate }) => {
               onNavigate("home");
             }}
           >
-            <img src="./images/logo.png" alt="LWS" className="max-w-[140px]" />
+            <img src={logo} alt="LWS" className="max-w-[140px]" />
           </a>
 
           <div className="flex gap-4">
