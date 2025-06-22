@@ -1,15 +1,10 @@
 import { AddToCart } from "./actionTypes.js";
-const initialState = [
-  {
-    id: 1,
-    cart: {},
-  },
-];
+const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case AddToCart:
-      return [...state, console.log("cart is coming")];
+      return [...state, action.payload];
 
     default:
       return state;

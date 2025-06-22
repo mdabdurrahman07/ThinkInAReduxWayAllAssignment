@@ -1,5 +1,5 @@
 import { AddedProduct } from "./actionsTypes";
 
-export const addProduct = (product) => {
-  return { type: AddedProduct, payload: product };
+export const addProduct = (items) => {
+  return { type: AddedProduct, payload: items };
 };
