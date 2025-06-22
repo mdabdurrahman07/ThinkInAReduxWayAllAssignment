@@ -1,1 +1,1 @@
-console.log("actionsTypes")
+export const AddedProduct = "product/addProduct";
