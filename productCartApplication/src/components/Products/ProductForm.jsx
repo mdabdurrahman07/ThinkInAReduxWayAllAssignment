@@ -3,19 +3,20 @@ import { addProduct } from "../../redux/product/actions";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.product);
   const generateId = () => {
-    if (products.length === 0) return 1;
-    const maxId = Math.max(...products.map((p) => p.id));
-    return maxId + 1;
-  };
+  if (!products || products.length === 0) return 1;
+  const maxId = Math.max(...products.map((p) => Number(p.id)));
+  return maxId + 1;
+};
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    dispatch(addProduct({ id: generateId, ...data }));
+    const id = generateId();
+    dispatch(addProduct({ id, ...data }));
   };
   return (
     <div class="formContainer">
