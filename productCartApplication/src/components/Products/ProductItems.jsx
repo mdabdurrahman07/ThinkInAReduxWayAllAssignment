@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 const ProductItems = () => {
   const products = useSelector((state) => state.product);
         console.log(products)
+
   return (
     <>
       {products.length > 0 ? (

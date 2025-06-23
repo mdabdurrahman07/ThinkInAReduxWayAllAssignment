@@ -1,15 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/product/actions";
 
 const ProductForm = () => {
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+  const generateId = () => {
+    if (products.length === 0) return 1;
+    const maxId = Math.max(...products.map((p) => p.id));
+    return maxId + 1;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    dispatch(addProduct(data));
+    dispatch(addProduct({ id: generateId, ...data }));
   };
   return (
     <div class="formContainer">
