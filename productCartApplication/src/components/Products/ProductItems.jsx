@@ -8,11 +8,12 @@ const ProductItems = () => {
   const products = useSelector((state) => state.product);
 
   const handleAddToCart = (id) => {
-    if (products.quantity > 0) {
-      dispatch(AddToCart(products));
-      dispatch(DecreaseProductQnt(id));
-    }
-  };
+  const selectedProduct = products.find((p) => p.id === id);
+  if (selectedProduct && Number(selectedProduct.quantity) > 0) {
+    dispatch({ type: AddToCart, payload: selectedProduct });
+    dispatch({ type: DecreaseProductQnt, payload: id });
+  }
+};
 
   return (
     <>
@@ -37,7 +38,7 @@ const ProductItems = () => {
                 </p>
               </div>
               <button
-                onClick={handleAddToCart(productItems.id)}
+                onClick={() =>handleAddToCart(productItems.id)}
                 className="lws-btnAddToCart"
               >
                 Add To Cart

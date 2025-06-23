@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux";
 import logo from "../assets/images/logo.png"
 const Header = ({ onNavigate }) => {
+  const cartNumber = useSelector((state) => state.cart)
+  const quantities = cartNumber.map((item) => item.quantity);
+  
   return (
     <>
       <nav className="bg-[#171C2A] py-4">
@@ -36,7 +40,7 @@ const Header = ({ onNavigate }) => {
               }}
             >
               <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-              <span id="lws-totalCart">0</span>
+              <span id="lws-totalCart">{cartNumber.length > 0 ? quantities : `0`}</span>
             </a>
           </div>
         </div>
