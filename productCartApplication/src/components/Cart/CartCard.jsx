@@ -1,6 +1,8 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteItems } from "../../redux/cart/actions";
 const CartCard = () => {
   const products = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   
     return (
         <>
@@ -35,7 +37,7 @@ const CartCard = () => {
             </div>
             {/* <!-- delete button --> */}
             <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-              <button className="lws-removeFromCart">
+              <button onClick={() => dispatch(deleteItems(product.id))} className="lws-removeFromCart">
                 <i className="text-lg text-red-400 fa-solid fa-trash"></i>
               </button>
             </div>

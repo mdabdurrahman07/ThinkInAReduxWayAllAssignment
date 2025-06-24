@@ -1,4 +1,4 @@
-import { AddToCart } from "./actionTypes.js";
+import { AddToCart, DeleteItems } from "./actionTypes.js";
 const initialState = [];
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +15,8 @@ const reducer = (state = initialState, action) => {
         return [...state, { ...action.payload, quantity: 1 }];
       }
     }
+    case DeleteItems: 
+    return state.filter((item) => item.id !== action.payload)
 
     default:
       return state;
