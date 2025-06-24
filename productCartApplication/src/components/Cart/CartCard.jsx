@@ -1,37 +1,50 @@
+import { useSelector } from "react-redux"
 const CartCard = () => {
+  const products = useSelector((state) => state.cart)
+  
     return (
-        <div class="cartCard">
-            <div class="flex items-center col-span-6 space-x-6">
+        <>
+        {
+          products.length > 0 ?
+          products?.map((product) =>(
+            
+            <div key={product.id} className="cartCard">
+            <div className="flex items-center col-span-6 space-x-6">
               {/* <!-- cart image --> */}
-              <img class="lws-cartImage" src="https://i.dummyjson.com/data/products/40/thumbnail.jpg" alt="product" />
+              <img className="lws-cartImage" src={product.image} alt="product" />
               {/* <!-- cart item info --> */}
-              <div class="space-y-2">
-                <h4 class="lws-cartName">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptop</h4>
-                <p class="lws-cartCategory">Men's clothing</p>
-                <p>BDT <span class="lws-cartPrice">1100</span></p>
+              <div className="space-y-2">
+                <h4 className="lws-cartName">{product.productName}</h4>
+                <p className="lws-cartCategory">{product.category}</p>
+                <p>BDT <span className="lws-cartPrice">{product.price}</span></p>
               </div>
             </div>
-            <div class="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
+            <div className="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
               {/* <!-- amount buttons --> */}
-              <div class="flex items-center space-x-4">
-                <button class="lws-incrementQuantity">
-                  <i class="text-lg fa-solid fa-plus"></i>
+              <div className="flex items-center space-x-4">
+                <button className="lws-incrementQuantity">
+                  <i className="text-lg fa-solid fa-plus"></i>
                 </button>
-                <span class="lws-cartQuantity">2</span>
-                <button class="lws-decrementQuantity">
-                  <i class="text-lg fa-solid fa-minus"></i>
+                <span className="lws-cartQuantity">0</span>
+                <button className="lws-decrementQuantity">
+                  <i className="text-lg fa-solid fa-minus"></i>
                 </button>
               </div>
               {/* <!-- price --> */}
-              <p class="text-lg font-bold">BDT <span class="lws-calculatedPrice">2200</span></p>
+              <p className="text-lg font-bold">BDT <span className="lws-calculatedPrice">{product.price}</span></p>
             </div>
             {/* <!-- delete button --> */}
-            <div class="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-              <button class="lws-removeFromCart">
-                <i class="text-lg text-red-400 fa-solid fa-trash"></i>
+            <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
+              <button className="lws-removeFromCart">
+                <i className="text-lg text-red-400 fa-solid fa-trash"></i>
               </button>
             </div>
           </div>
+          )) :
+
+          <div className="text-center text-2xl font-semibold">Please Add a product to cart</div>
+          
+        }</>
     );
 };
 

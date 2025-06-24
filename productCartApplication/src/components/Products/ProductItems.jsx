@@ -39,9 +39,9 @@ const ProductItems = () => {
               </div>
               <button
                 onClick={() =>handleAddToCart(productItems.id)}
-                className="lws-btnAddToCart"
+                className={`lws-btnAddToCart ${productItems.quantity < 0 && "disabled" }`}
               >
-                Add To Cart
+                Add to Cart
               </button>
             </div>
           </div>
