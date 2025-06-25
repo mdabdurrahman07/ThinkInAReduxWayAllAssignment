@@ -7,6 +7,7 @@ import {
 const CartCard = () => {
   const products = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  // console.log(products)
 
   return (
     <>
