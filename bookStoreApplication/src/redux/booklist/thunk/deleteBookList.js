@@ -1,4 +1,5 @@
-import { Delete } from "../booklist/action"
+import { Delete } from "../action"
+
 
 const deleteBookList = (id) =>{
     return async (dispatch) =>{

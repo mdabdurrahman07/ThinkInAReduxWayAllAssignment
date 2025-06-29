@@ -1,4 +1,4 @@
-import { AddBook } from "../booklist/action";
+import { AddBook } from "../action";
 
 const addBooks = (book) => {
   return async (dispatch) => {

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AddBook } from "../redux/booklist/action";
-import addBooks from "../redux/thunk/addBooks";
+import addBooks from "../redux/booklist/thunk/addBooks.js";
 const BookAddingForm = () => {
   const book = useSelector((state) => state.bookList)
   const dispatch = useDispatch()

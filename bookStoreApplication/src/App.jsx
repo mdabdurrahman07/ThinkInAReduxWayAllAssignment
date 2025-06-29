@@ -1,8 +1,11 @@
+import { useState } from "react";
 import BookAddingForm from "./components/BookAddingForm";
 import BookCard from "./components/BookCard";
 import Nav from "./components/Nav";
 
 const App = () => {
+  const [value, setValue] = useState(false)
+  console.log(value)
   return (
     <>
     {/* Nav section */}
@@ -17,7 +20,7 @@ const App = () => {
                 <button className="filter-btn active-filter" id="lws-filterAll">
                   All
                 </button>
-                <button className="filter-btn" id="lws-filterFeatured">
+                <button onClick={() => setValue(!value)} className="filter-btn" id="lws-filterFeatured">
                   Featured
                 </button>
               </div>

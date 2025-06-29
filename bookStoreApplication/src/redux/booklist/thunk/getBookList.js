@@ -1,4 +1,5 @@
-import { LoadedBook } from "../booklist/action.js";
+import { LoadedBook } from "../action.js";
+
 
 const getBookList = async (dispatch) => {
   const response = await fetch("http://localhost:9000/books");
