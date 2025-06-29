@@ -15,7 +15,7 @@ Flightbooking Application
 
 - [Live Link](https://flight-booking-application-brown.vercel.app/)
 
-##  Assignment 2 
+##  Assignment 3 
 
 ProductCart Application
 
