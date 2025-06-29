@@ -2,12 +2,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getBookList from "../redux/thunk/getBookList";
 import StarRating from "./StarRating";
+import deleteBookList from "../redux/thunk/deleteBookList";
 const BookCard = () => {
   const books = useSelector((state) => state.bookList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBookList);
   }, [dispatch]);
+  const handleDeleteBook = (id) =>{
+    dispatch(deleteBookList(id))
+  }
 
   return (
     <>
@@ -41,7 +45,7 @@ const BookCard = () => {
                       />
                     </svg>
                   </button>
-                  <button className="lws-delete">
+                  <button onClick={() => handleDeleteBook(book?.id)} className="lws-delete">
                     <svg
                       fill="none"
                       viewBox="0 0 24 24"
@@ -76,3 +80,13 @@ const BookCard = () => {
 };
 
 export default BookCard;
+
+// {
+//     "name": "Eloquent JavaScript, 3rd Edition",
+//     "author": "Marijn Haverbeke",
+//     "thumbnail": "https://m.media-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+//     "price": 23.99,
+//     "rating": 4,
+//     "featured": true,
+//     "id": 4
+//   }
