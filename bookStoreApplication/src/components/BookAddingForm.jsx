@@ -1,18 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
+import { AddBook } from "../redux/booklist/action";
+import addBooks from "../redux/thunk/addBooks";
 const BookAddingForm = () => {
-//    const generateId = () => {
-//   if (!products || products.length === 0) return 1;
-//   const maxId = Math.max(...products.map((p) => Number(p.id)));
-//   return maxId + 1;
-// };
+  const book = useSelector((state) => state.bookList)
+  const dispatch = useDispatch()
+   const generateId = () => {
+  if (!book || book.length === 0) return 1;
+  const maxId = Math.max(...book.map((p) => Number(p.id)));
+  return maxId + 1;
+};
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
-    // const id = generateId();
-    // dispatch(addProduct({ id, ...data }));
+    const id = generateId();
+    dispatch(addBooks({id, ...data}))
+    form.reset()
   };
   return (
     <div>

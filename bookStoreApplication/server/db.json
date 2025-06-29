@@ -17,6 +17,24 @@
       "rating": 4,
       "featured": false,
       "id": 2
+    },
+    {
+      "id": 3,
+      "name": "All the Light We Cannot See: A Novel ",
+      "author": " Anthony Doerr",
+      "thumbnail": "https://m.media-amazon.com/images/I/81WY6M9XikL._SY466_.jpg",
+      "price": "18",
+      "rating": "4",
+      "featured": "on"
+    },
+    {
+      "id": 4,
+      "name": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+      "author": "Morgan Housel",
+      "thumbnail": "https://m.media-amazon.com/images/I/81wZXiu4OiL._SY466_.jpg",
+      "price": "21",
+      "rating": "5",
+      "featured": "on"
     }
   ]
 }
