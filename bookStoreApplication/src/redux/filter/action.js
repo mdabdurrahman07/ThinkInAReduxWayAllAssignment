@@ -1,8 +1,8 @@
-import { SEARCH } from "./actionTypes"
+import { SEARCH } from "./actionTypes";
 
-export const search = (text) => {
-    return {
-        type: SEARCH,
-        payload: text
-    }
-}
+export const search = (book) => {
+  return {
+    type: SEARCH,
+    payload: book,
+  };
+};

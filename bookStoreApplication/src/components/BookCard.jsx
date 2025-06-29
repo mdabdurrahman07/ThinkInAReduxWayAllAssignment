@@ -5,6 +5,8 @@ import StarRating from "./StarRating";
 import deleteBookList from "../redux/booklist/thunk/deleteBookList.js";
 const BookCard = ({value}) => {
   const books = useSelector((state) => state.bookList);
+  const searchedBooks = useSelector((state) => state.filter)
+  console.log(searchedBooks)
   const DisplayBooks = value === true ? books.filter((book) => book?.featured) : books
   const dispatch = useDispatch();
   console.log(value)
