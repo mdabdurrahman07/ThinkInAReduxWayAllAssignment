@@ -1,4 +1,9 @@
 const BookAddingForm = () => {
+//    const generateId = () => {
+//   if (!products || products.length === 0) return 1;
+//   const maxId = Math.max(...products.map((p) => Number(p.id)));
+//   return maxId + 1;
+// };
   const handleSubmit = (e) => {
     e.preventDefault();
 

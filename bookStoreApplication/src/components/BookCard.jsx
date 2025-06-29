@@ -1,9 +1,22 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getBookList from "../redux/thunk/getBookList";
 const BookCard = () => {
+  const books = useSelector((state) => state.bookList);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBookList);
+  }, [dispatch]);
+
+  
   return (
-    <div className="book-card">
+    <>
+    {
+      books?.length > 0 ? 
+      books?.map(book => <div key={book?.id} className="book-card">
       <img
         className="h-[240px] w-[170px] object-cover lws-bookThumbnail"
-        src="https://m.media-amazon.com/images/P/B07DZ86WP7.01._SCLZZZZZZZ_SX500_.jpg"
+        src={book?.thumbnail}
         alt="book"
       />
       <div className="flex-1 h-full pr-2 pt-2 flex flex-col">
@@ -45,9 +58,9 @@ const BookCard = () => {
 
         <div className="space-y-2 mt-4 h-full">
           <h4 className="lws-bookName">
-            Life Hurts: A Doctor's Personal Journey Through Anorexia
+            {book?.name}
           </h4>
-          <p className="lws-author">Dr Elizabeth McNaught</p>
+          <p className="lws-author">{book?.author}</p>
           <div className="lws-stars">
             <svg viewBox="0 0 20 20" fill="currentColor" className="lws-star">
               <path
@@ -71,10 +84,16 @@ const BookCard = () => {
               />
             </svg>
           </div>
-          <p className="lws-price">BDT 14</p>
+          <p className="lws-price">{book?.price}</p>
         </div>
       </div>
-    </div>
+    </div>)
+
+        : 
+        <div>No Product Available</div>
+    }
+    
+    </>
   );
 };
 
