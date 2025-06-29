@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import getBookList from "../redux/booklist/thunk/getBookList.js";
 import StarRating from "./StarRating";
 import deleteBookList from "../redux/booklist/thunk/deleteBookList.js";
-const BookCard = () => {
+const BookCard = ({value}) => {
   const books = useSelector((state) => state.bookList);
+  const DisplayBooks = value === true ? books.filter((book) => book?.featured) : books
   const dispatch = useDispatch();
+  console.log(value)
   useEffect(() => {
     dispatch(getBookList);
   }, [dispatch]);
   const handleDeleteBook = (id) => {
     dispatch(deleteBookList(id));
   };
+  
 
   return (
     <>
-      {books?.length > 0 ? (
-        books?.map((book) => (
+      {DisplayBooks?.length > 0 ? (
+        DisplayBooks?.map((book) => (
           <div key={book?.id} className="book-card">
             <img
               className="h-[240px] w-[170px] object-cover lws-bookThumbnail"
