@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import getBookList from "../redux/booklist/thunk/getBookList.js";
 import StarRating from "./StarRating";
 import deleteBookList from "../redux/booklist/thunk/deleteBookList.js";
-const BookCard = ({ value }) => {
+const BookCard = ({ value, setEditingBook }) => {
   const books = useSelector((state) => state.bookList);
   const searchedBooks = useSelector((state) => state.filter);
   let DisplayBooks;
@@ -20,6 +20,9 @@ const BookCard = ({ value }) => {
   const handleDeleteBook = (id) => {
     dispatch(deleteBookList(id));
   };
+  const handleUpdateBook = (book) =>{
+    setEditingBook(book)
+  }
 
   return (
     <>
@@ -38,7 +41,7 @@ const BookCard = ({ value }) => {
                 )}
 
                 <div className="text-gray-500 space-x-2">
-                  <button className="lws-edit">
+                  <button onClick={() =>handleUpdateBook(book)} className="lws-edit">
                     <svg
                       fill="none"
                       viewBox="0 0 24 24"

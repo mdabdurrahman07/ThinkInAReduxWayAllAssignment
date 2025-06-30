@@ -1,4 +1,4 @@
-import { ADDBOOK, DELETE, LOADED } from "./actionTypes";
+import { ADDBOOK, DELETE, LOADED, UPDATE } from "./actionTypes";
 
 const initialState = [];
 
@@ -10,6 +10,8 @@ const reducer = (state = initialState, action) => {
       return action.payload;
     case DELETE:
       return state.filter((book) => book.id !== action.payload)
+    case UPDATE:
+      return state.map((book) => book.id === action.payload.id ? action.payload : book)
     default:
       return state;
   }

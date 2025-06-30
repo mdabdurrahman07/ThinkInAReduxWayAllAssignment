@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 
 const App = () => {
   const [value, setValue] = useState(false);
+  const [editingBook , setEditingBook] = useState(null)
   return (
     <>
       {/* Nav section */}
@@ -30,12 +31,12 @@ const App = () => {
             </div>
             <div className="lws-bookContainer">
               {/* <!-- Card 1 --> */}
-              <BookCard value={value} />
+              <BookCard value={value} editingBook={editingBook} setEditingBook={setEditingBook}/>
               {/* <!-- Card 1 --> */}
             </div>
           </div>
           {/* Form */}
-          <BookAddingForm />
+          <BookAddingForm editingBook={editingBook} setEditingBook={setEditingBook}/>
           {/* Form */}
         </div>
       </main>
