@@ -37,7 +37,7 @@ ProductCart Application
 
 To get it working, follow these steps:
 
-1. Go to the GitHub repository: [repo link](#https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/tree/main/bookStoreApplication/server)
+1. Go to the GitHub repository:  [Link](https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/tree/main/bookStoreApplication/server)
 2. Clone the project:
    ```bash
    git clone <repository-url>
