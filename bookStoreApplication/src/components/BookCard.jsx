@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import getBookList from "../redux/booklist/thunk/getBookList.js";
 import StarRating from "./StarRating";
 import deleteBookList from "../redux/booklist/thunk/deleteBookList.js";
-const BookCard = ({value}) => {
+const BookCard = ({ value }) => {
   const books = useSelector((state) => state.bookList);
-  const searchedBooks = useSelector((state) => state.filter)
-  console.log(searchedBooks)
-  const DisplayBooks = value === true ? books.filter((book) => book?.featured) : books
+  const searchedBooks = useSelector((state) => state.filter);
+  let DisplayBooks;
+  if (searchedBooks.length > 0) {
+    DisplayBooks = searchedBooks;
+  } else {
+    DisplayBooks =
+      value === true ? books.filter((book) => book?.featured) : books;
+  }
   const dispatch = useDispatch();
-  console.log(value)
   useEffect(() => {
     dispatch(getBookList);
   }, [dispatch]);
   const handleDeleteBook = (id) => {
     dispatch(deleteBookList(id));
   };
-  
 
   return (
     <>
