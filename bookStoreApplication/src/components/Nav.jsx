@@ -3,12 +3,11 @@ import { useDispatch } from "react-redux";
 import getFilteredBooks from "../redux/filter/thunk/getFilteredBooks";
 
 const Nav = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleFilterBooks = (e) => {
-    e.preventDefault()
-    const value = e.target.value
-    dispatch(getFilteredBooks(value))
-    
+    e.preventDefault();
+    const value = e.target.value;
+    dispatch(getFilteredBooks(value));
   };
   return (
     <div>

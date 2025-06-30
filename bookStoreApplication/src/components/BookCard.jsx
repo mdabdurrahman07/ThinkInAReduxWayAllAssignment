@@ -20,9 +20,9 @@ const BookCard = ({ value, setEditingBook }) => {
   const handleDeleteBook = (id) => {
     dispatch(deleteBookList(id));
   };
-  const handleUpdateBook = (book) =>{
-    setEditingBook(book)
-  }
+  const handleUpdateBook = (book) => {
+    setEditingBook(book);
+  };
 
   return (
     <>
@@ -41,7 +41,10 @@ const BookCard = ({ value, setEditingBook }) => {
                 )}
 
                 <div className="text-gray-500 space-x-2">
-                  <button onClick={() =>handleUpdateBook(book)} className="lws-edit">
+                  <button
+                    onClick={() => handleUpdateBook(book)}
+                    className="lws-edit"
+                  >
                     <svg
                       fill="none"
                       viewBox="0 0 24 24"

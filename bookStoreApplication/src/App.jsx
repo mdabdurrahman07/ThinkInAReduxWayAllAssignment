@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 
 const App = () => {
   const [value, setValue] = useState(false);
-  const [editingBook , setEditingBook] = useState(null)
+  const [editingBook, setEditingBook] = useState(null);
   return (
     <>
       {/* Nav section */}
@@ -17,7 +17,11 @@ const App = () => {
               <h4 className="mt-2 text-xl font-bold">Book List</h4>
 
               <div className="flex items-center space-x-4">
-                <button onClick={() => setValue(!value)} className="filter-btn active-filter" id="lws-filterAll">
+                <button
+                  onClick={() => setValue(!value)}
+                  className="filter-btn active-filter"
+                  id="lws-filterAll"
+                >
                   All
                 </button>
                 <button
@@ -31,12 +35,19 @@ const App = () => {
             </div>
             <div className="lws-bookContainer">
               {/* <!-- Card 1 --> */}
-              <BookCard value={value} editingBook={editingBook} setEditingBook={setEditingBook}/>
+              <BookCard
+                value={value}
+                editingBook={editingBook}
+                setEditingBook={setEditingBook}
+              />
               {/* <!-- Card 1 --> */}
             </div>
           </div>
           {/* Form */}
-          <BookAddingForm editingBook={editingBook} setEditingBook={setEditingBook}/>
+          <BookAddingForm
+            editingBook={editingBook}
+            setEditingBook={setEditingBook}
+          />
           {/* Form */}
         </div>
       </main>

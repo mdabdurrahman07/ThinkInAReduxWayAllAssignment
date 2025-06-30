@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import bookListReducer from "./booklist/bookListReducer"
-import filterReducer from "./filter/filterReducer"
+import bookListReducer from "./booklist/bookListReducer";
+import filterReducer from "./filter/filterReducer";
 const allReducer = combineReducers({
-    bookList: bookListReducer,
-    filter: filterReducer,
-})
+  bookList: bookListReducer,
+  filter: filterReducer,
+});
 
-export default allReducer
+export default allReducer;

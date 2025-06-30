@@ -2,55 +2,54 @@ import { useDispatch, useSelector } from "react-redux";
 import addBooks from "../redux/booklist/thunk/addBooks.js";
 import { useEffect, useState } from "react";
 import updateBookList from "../redux/booklist/thunk/updateBookList.js";
-const BookAddingForm = ({editingBook, setEditingBook}) => {
-  const book = useSelector((state) => state.bookList)
-  const dispatch = useDispatch()
-  const [name, setName] = useState("")
-  const [author, setAuthor] = useState("")
-  const [price, setPrice] = useState("")
-  const [rating, setRating] = useState("")
-  const [thumbnail, setThumbnail] = useState("")
-  const [featured, setFeatured] = useState(false)
-   const generateId = () => {
-  if (!book || book.length === 0) return 1;
-  const maxId = Math.max(...book.map((p) => Number(p.id)));
-  return maxId + 1;
-};
+const BookAddingForm = ({ editingBook, setEditingBook }) => {
+  const book = useSelector((state) => state.bookList);
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [author, setAuthor] = useState("");
+  const [price, setPrice] = useState("");
+  const [rating, setRating] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [featured, setFeatured] = useState(false);
+  const generateId = () => {
+    if (!book || book.length === 0) return 1;
+    const maxId = Math.max(...book.map((p) => Number(p.id)));
+    return maxId + 1;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    data.featured = !!featured
+    data.featured = !!featured;
     const id = generateId();
-    let updateId = editingBook?.id
-    if(editingBook){
-      dispatch(updateBookList({updateId , ...data}))
+    let updateId = editingBook?.id;
+    if (editingBook) {
+      dispatch(updateBookList({ updateId, ...data }));
+    } else {
+      dispatch(addBooks({ id, ...data }));
     }
-    else{
-      dispatch(addBooks({id, ...data}))
-    }
-    form.reset()
-    setEditingBook(null)
+    form.reset();
+    setEditingBook(null);
   };
-  useEffect(() =>{
-    if(editingBook){
-      setName(editingBook.name)
-      setAuthor(editingBook.author)
-      setThumbnail(editingBook.thumbnail)
-      setPrice(editingBook.price)
-      setRating(editingBook.rating)
-      setFeatured(editingBook.featured)
-    }else{
-      setName("")
-      setAuthor("")
-      setThumbnail("")
-      setPrice("")
-      setRating("")
-      setFeatured(false)
+  useEffect(() => {
+    if (editingBook) {
+      setName(editingBook.name);
+      setAuthor(editingBook.author);
+      setThumbnail(editingBook.thumbnail);
+      setPrice(editingBook.price);
+      setRating(editingBook.rating);
+      setFeatured(editingBook.featured);
+    } else {
+      setName("");
+      setAuthor("");
+      setThumbnail("");
+      setPrice("");
+      setRating("");
+      setFeatured(false);
     }
-  },[editingBook])
+  }, [editingBook]);
   return (
     <div>
       <div className="p-4 overflow-hidden bg-white shadow-cardShadow rounded-md">
@@ -105,7 +104,7 @@ const BookAddingForm = ({editingBook, setEditingBook}) => {
                 id="input-Bookprice"
                 name="price"
                 value={price}
-              onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
 
@@ -120,7 +119,7 @@ const BookAddingForm = ({editingBook, setEditingBook}) => {
                 min="1"
                 max="5"
                 value={rating}
-              onChange={(e) => setRating(e.target.value)}
+                onChange={(e) => setRating(e.target.value)}
               />
             </div>
           </div>
