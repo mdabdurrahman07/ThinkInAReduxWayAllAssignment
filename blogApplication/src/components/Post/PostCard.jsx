@@ -1,26 +1,29 @@
-import React from "react";
-import gitPhoto from "../../assets/images/git.webp";
-import {Link} from "react-router-dom";
-const PostCard = () => {
+import { Link } from "react-router-dom";
+
+const PostCard = ({blog}) => {
+  console.log(blog.id)
+  const {id, image, createdAt, likes, tags, title} = blog || {}
   return (
     <div className="lws-card">
-      <Link to="/posts/1">
-        <img src={gitPhoto} className="lws-card-image" alt="" />
+      <Link to={`/posts/${id}`}>
+        <img src={image} className="lws-card-image" alt={title} />
       </Link>
       <div className="p-4">
         <div className="lws-card-header">
-          <p className="lws-publishedDate">2023-05-01</p>
+          <p className="lws-publishedDate">{createdAt}</p>
           <p className="lws-likeCount">
-            <i className="fa-regular fa-thumbs-up"></i>100
+            <i className="fa-regular fa-thumbs-up"></i>
+            {likes}
           </p>
         </div>
-        <Link to="/posts/1" className="lws-postTitle">
+        <Link to={`/posts/${id}`} className="lws-postTitle">
           {" "}
-          Top Github Alternatives{" "}
+          {title}{" "}
         </Link>
-        <div className="lws-tags">
-          <span>#python,</span> <span>#tech,</span> <span>#git</span>
+        <div className="flex gap-2 flex-wrap mt-1">
+          {tags.map(tag => <div className="lws-tags">#{tag}</div>)}
         </div>
+        
         {/* <!-- Show this element if post is saved --> */}
         <div className="flex gap-2 mt-4">
           <span className="lws-badge"> Saved </span>
