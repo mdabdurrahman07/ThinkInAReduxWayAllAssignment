@@ -2,5 +2,5 @@ import axios from "../../../utils/axios";
 
 export const getBlog = async (id) => {
   const response = await axios.get(`/blogs/${id}`);
-  return await response?.date;
+  return await response?.data;
 };

@@ -12,7 +12,7 @@ const initialState = {
 
 // declaring the async thunk
 
-export const fetchBlogs = createAsyncThunk("blog/fetchBlog", async (id) => {
+export const fetchBlog = createAsyncThunk("blog/fetchBlog", async (id) => {
   const blog = await getBlog(id);
   return blog;
 });
@@ -24,15 +24,15 @@ const blogSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBlogs.pending, (state) => {
+      .addCase(fetchBlog.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
       })
-      .addCase(fetchBlogs.fulfilled, (state, action) => {
+      .addCase(fetchBlog.fulfilled, (state, action) => {
         state.isLoading = false;
         state.blog = action.payload;
       })
-      .addCase(fetchBlogs.rejected, (state, action) => {
+      .addCase(fetchBlog.rejected, (state, action) => {
         state.isLoading = false;
         state.blog = [];
         state.isError = true;
