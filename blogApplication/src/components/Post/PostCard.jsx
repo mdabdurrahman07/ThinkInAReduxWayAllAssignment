@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-const PostCard = ({blog}) => {
-  console.log(blog.id)
-  const {id, image, createdAt, likes, tags, title} = blog || {}
+const PostCard = ({ blog }) => {
+  const { id, image, createdAt, likes, tags, title } = blog || {};
   return (
     <div className="lws-card">
       <Link to={`/posts/${id}`}>
@@ -21,9 +20,13 @@ const PostCard = ({blog}) => {
           {title}{" "}
         </Link>
         <div className="flex gap-2 flex-wrap mt-1">
-          {tags.map(tag => <div className="lws-tags">#{tag}</div>)}
+          {tags.map((tag, idx) => (
+            <div className="lws-tags" key={idx}>
+              #{tag}
+            </div>
+          ))}
         </div>
-        
+
         {/* <!-- Show this element if post is saved --> */}
         <div className="flex gap-2 mt-4">
           <span className="lws-badge"> Saved </span>
