@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { FaRegThumbsUp } from "react-icons/fa";
+import { FaRegBookmark } from "react-icons/fa";
 
 const PostCard = ({ blog }) => {
-  const { id, image, createdAt, likes, tags, title } = blog || {};
+  const { id, image, createdAt, likes, tags, title, isSaved } = blog || {};
   return (
     <div className="lws-card">
       <Link to={`/posts/${id}`}>
@@ -10,8 +12,8 @@ const PostCard = ({ blog }) => {
       <div className="p-4">
         <div className="lws-card-header">
           <p className="lws-publishedDate">{createdAt}</p>
-          <p className="lws-likeCount">
-            <i className="fa-regular fa-thumbs-up"></i>
+          <p className="lws-likeCount flex items-center gap-2">
+           <FaRegThumbsUp/>
             {likes}
           </p>
         </div>
@@ -29,7 +31,7 @@ const PostCard = ({ blog }) => {
 
         {/* <!-- Show this element if post is saved --> */}
         <div className="flex gap-2 mt-4">
-          <span className="lws-badge"> Saved </span>
+          <span className="lws-badge"> {isSaved === true ? 'Saved' : <FaRegBookmark className="text-lg"/>} </span>
         </div>
         {/* <!-- Show this element if post is saved Ends --> */}
       </div>
