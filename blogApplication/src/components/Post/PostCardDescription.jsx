@@ -1,7 +1,17 @@
+import { FaRegBookmark, FaRegThumbsUp } from "react-icons/fa";
 import Loading from "../Loading/Loading";
-const PostCardDescription = ({ blog }) => {
-  const { title, isSaved, likes, image, tags, description } = blog || {};
+import {useDispatch} from "react-redux"
+import { updateIsSaved, updateLikes } from "../../Redux/features/blog/blogSlice";
 
+const PostCardDescription = ({ blog }) => {
+  const dispatch = useDispatch()
+  const { title, isSaved, likes, image, tags, description } = blog || {};
+  const handleUpdateLike = () =>{
+    dispatch(updateLikes(blog))
+  }
+  const handelUpdateBookmark = () =>{
+    dispatch(updateIsSaved(blog))
+  }
   return (
     <div className="post">
       <img
@@ -24,13 +34,14 @@ const PostCardDescription = ({ blog }) => {
 
         <div className="btn-group">
           {/* <!-- handle like on button click --> */}
-          <button className="like-btn" id="lws-singleLinks">
-            <i className="fa-regular fa-thumbs-up"></i> {likes}
+          <button onClick={handleUpdateLike} className="like-btn flex items-center gap-2" id="lws-singleLinks">
+            <FaRegThumbsUp/>
+                        {likes}
           </button>
           {/* <!-- handle save on button click --> */}
           {/* <!-- use ".active" className and "Saved" text  if a post is saved, other wise "Save" --> */}
-          <button className="active save-btn" id="lws-singleSavedBtn">
-            <i className="fa-regular fa-bookmark"></i> Saved
+          <button onClick={handelUpdateBookmark} className="active save-btn" id="lws-singleSavedBtn">
+            <span className="lws-badge"> {isSaved === true ? 'Saved' : <FaRegBookmark className="text-lg"/>} </span>
           </button>
         </div>
         <div className="mt-6">

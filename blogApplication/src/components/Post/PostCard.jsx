@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaRegThumbsUp } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaRegThumbsUp } from "react-icons/fa";
 
 const PostCard = ({ blog }) => {
   const { id, image, createdAt, likes, tags, title, isSaved } = blog || {};
