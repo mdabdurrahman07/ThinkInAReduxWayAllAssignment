@@ -28,11 +28,8 @@ const relatedBlogsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRelatedBlogs.pending, (state) => {
-        (state.isError = false), (state.isLoading = true);
-      })
-      .addCase(fetchRelatedBlogs.fulfilled, (state, action) => {
-        state.isLoading = true;
-        state.relatedBlog = action.payload;
+        state.isLoading = true
+        state.isError = false
       })
       .addCase(fetchRelatedBlogs.fulfilled, (state, action) => {
         state.isLoading = true;

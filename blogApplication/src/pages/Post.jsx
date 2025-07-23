@@ -7,16 +7,18 @@ import Loading from "../components/Loading/Loading";
 import { fetchBlog } from "../Redux/features/blog/blogSlice";
 const Post = () => {
   const dispatch = useDispatch();
-  const {id} = useParams();
-  
+  const { blogId } = useParams();
+
   useEffect(() => {
-    dispatch(fetchBlog(id));
-  }, [dispatch, id]);
+    dispatch(fetchBlog(blogId));
+  }, [blogId, dispatch]);
 
   const { blog, isError, isLoading, error } = useSelector(
     (state) => state.blog
   );
-  
+
+  const { tags, id } = blog || {};
+
   let content;
 
   if (isLoading) {
@@ -26,17 +28,14 @@ const Post = () => {
   } else if (!isError && !isLoading && blog?.length === 0) {
     content = <div className="col-span-12">No Blog found</div>;
   } else {
-    content = <div className="post-page-container">
-      <PostCardDescription blog={blog} />
-      <RelatedPost />
-    </div>;
+    content = (
+      <div className="post-page-container">
+        <PostCardDescription blog={blog} />
+        <RelatedPost tags={tags} id={id} />
+      </div>
+    );
   }
-  return (
-    
-    <div>
-        {content}
-    </div>
-  );
+  return <div>{content}</div>;
 };
 
 export default Post;
