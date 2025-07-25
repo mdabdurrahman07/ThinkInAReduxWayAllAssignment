@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getBlogs } from "./blogsApi";
 
-
 // declaring the initialState
 
 const initialState = {
@@ -13,10 +12,13 @@ const initialState = {
 
 // declaring the async thunk
 
-export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async () => {
-  const blogs = await getBlogs();
-  return blogs;
-});
+export const fetchBlogs = createAsyncThunk(
+  "blogs/fetchBlogs",
+  async ({ filter = "all", sort ="" } = {}) => {
+    const blogs = await getBlogs({ filter, sort });
+    return blogs;
+  }
+);
 
 // declaring the reducer
 
