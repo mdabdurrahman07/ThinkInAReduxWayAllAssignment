@@ -1,3 +1,5 @@
+import Job from "../Jobs/Job";
+
 const Sorting = () => {
   return (
     <div class="lg:pl-[14rem]  mt-[5.8125rem]">
@@ -26,6 +28,7 @@ const Sorting = () => {
             </select>
           </div>
         </div>
+        <Job/>
       </main>
     </div>
   );
