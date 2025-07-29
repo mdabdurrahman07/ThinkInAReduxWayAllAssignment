@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -40,10 +41,10 @@ const SideBar = () => {
             </ul>
           </li>
           <li>
-            <a href="/jobs" class="main-menu" id="lws-addJob-menu">
+            <Link to="addJobs" class="main-menu" id="lws-addJob-menu">
               <i class="fa-solid fa-file-circle-plus"></i>
               <span>Add NewJob</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
