@@ -1118,6 +1118,10 @@ form .fieldContainer {
   color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
+.toast {
+  z-index: 9999 !important;
+}
+
 @media (min-width: 640px) {
   .sm\:ml-3 {
     margin-left: 0.75rem;

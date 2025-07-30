@@ -1,32 +1,28 @@
-import toast from "react-hot-toast";
 import { createJobs } from "../../Redux/Features/Jobs/jobsSlice";
 import SideBar from "../Header/SideBar";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 const AddJob = () => {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
+  const handlePostJob = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.lwsJobTitle.value;
+    const type = form.lwsJobType.value;
+    const salary = form.lwsJobSalary.value;
+    const deadline = form.lwsJobDeadline.value;
 
-  const handlePostJob = (e) =>{
-    e.preventDefault()
-    const form = e.target
-    const title = form.lwsJobTitle.value
-    const type = form.lwsJobType.value
-    const salary = form.lwsJobSalary.value
-    const deadline = form.lwsJobDeadline.value
-
-    dispatch(createJobs({
-      title,
-      type,
-      salary: Number(salary),
-      deadline
-    }))
-
-    toast.success("Job added successfully")
+    dispatch(
+      createJobs({
+        title,
+        type,
+        salary: Number(salary),
+        deadline,
+      })
+    );
     form.reset()
-    
-  }
+  };
 
-  
   return (
     <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8">
       <SideBar />
