@@ -22,8 +22,8 @@ export const fetchJobs = createAsyncThunk("Jobs/fetchJobs", async () => {
 
 // post single job
 
-export const createJobs = createAsyncThunk("Jobs/createJobs", async () => {
-  const job = await postJob();
+export const createJobs = createAsyncThunk("Jobs/createJobs", async (data) => {
+  const job = await postJob(data);
   return job;
 });
 
