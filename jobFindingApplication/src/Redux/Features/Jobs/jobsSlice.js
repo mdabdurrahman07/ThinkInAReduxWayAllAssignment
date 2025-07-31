@@ -16,7 +16,7 @@ const initialState = {
 // get all jobs
 
 export const fetchJobs = createAsyncThunk("Jobs/fetchJobs", async ({sort="" , search="" , types=""} = {}) => {
-  const jobs = await getJobs({types});
+  const jobs = await getJobs({types ,sort, search });
   return jobs;
 });
 

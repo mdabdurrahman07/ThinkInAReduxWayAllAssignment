@@ -5,8 +5,10 @@ export const getJobs = async ({ sort, search, types }) => {
 
   if (types) params.append("type", types);
   if (search) params.append("q", search);
-  if (sort) params.append("_sort", sort);
-
+  if(sort === "asc" || sort === "desc"){
+    params.append("_sort" , "salary")
+    params.append("_order", sort === "asc" ? "asc" : "desc" )
+  }
   const query = params.toString();
 
   const response = await publicApi.get(`/jobs${query ? `?${query}` : ""}`);

@@ -3,11 +3,14 @@ import Job from "../Jobs/Job";
 import {useDispatch, useSelector} from "react-redux"
 import { fetchJobs } from "../../Redux/Features/Jobs/jobsSlice";
 import Loading from "../Loading/Loading";
+import { searchCheck, sortCheck } from "../../Redux/Features/Filters/FiltersSlice";
 const Sorting = () => {
   const dispatch = useDispatch()
+  const {types,sort,search} = useSelector((state) => state.filters)
   useEffect(() =>{
-    dispatch(fetchJobs())
-  },[dispatch])
+    dispatch(fetchJobs({types,sort,search}))
+  },[dispatch, search, sort, types])
+
   const {jobs , isLoading , isError , error} = useSelector((state) => state.jobs)
 
   let content;
@@ -23,7 +26,13 @@ const Sorting = () => {
      <Job key={job?.id} jobs={job}/>
     ));
   }
-  const {types} = useSelector((state) => state.filters)
+  
+  const handleSort = (e) =>{
+    dispatch(sortCheck(e.target.value))
+  }
+  const handleSearch = (e) =>{
+    dispatch(searchCheck(e.target.value))
+  }
   return (
     <div className="lg:pl-[14rem]  mt-[5.8125rem]">
       <main className="max-w-3xl rounded-lg  mx-auto relative z-20 p-10 xl:max-w-none bg-[#1E293B]">
@@ -37,6 +46,8 @@ const Sorting = () => {
                 placeholder="Search Job"
                 className="search-input"
                 id="lws-searchJob"
+                onChange={handleSearch}
+                
               />
             </div>
             <select
@@ -44,10 +55,11 @@ const Sorting = () => {
               name="sort"
               autocomplete="sort"
               className="flex-1"
+              onChange={handleSort}
             >
-              <option>Default</option>
-              <option>Salary (Low to High)</option>
-              <option>Salary (High to Low)</option>
+              <option value="">Default</option>
+              <option value="asc">Salary (Low to High)</option>
+              <option value="desc">Salary (High to Low)</option>
             </select>
           </div>
         </div>

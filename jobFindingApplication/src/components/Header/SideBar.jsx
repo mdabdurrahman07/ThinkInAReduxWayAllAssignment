@@ -6,15 +6,15 @@ import { typesCheck } from "../../Redux/Features/Filters/FiltersSlice";
 
 const SideBar = () => {
   const dispatch = useDispatch();
-  const {types , search , sort} = useSelector((state) => state.filters)
+  const { types, search, sort } = useSelector((state) => state.filters);
   useEffect(() => {
     if (types) {
       dispatch(fetchJobs({ types }));
     }
   }, [dispatch, types]);
   const handleTypesChange = (Types) => {
-    dispatch(typesCheck(Types))
-     dispatch(fetchJobs({ types: Types, sort, search }));
+    dispatch(typesCheck(Types));
+    dispatch(fetchJobs({ types: Types, sort, search }));
   };
 
   return (
@@ -22,7 +22,11 @@ const SideBar = () => {
       <nav>
         <ul className="space-y-4 cursor-pointer">
           <li>
-            <div className="main-menu menu-active" id="lws-alljobs-menu" onClick={() => handleTypesChange("")}>
+            <div
+              className="main-menu menu-active"
+              id="lws-alljobs-menu"
+              onClick={() => handleTypesChange("")}
+            >
               <i className="fa-solid fa-briefcase"></i>
               <span> All Available Jobs</span>
             </div>
