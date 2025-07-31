@@ -1,8 +1,15 @@
 import publicApi from "../../../utils/publicApi";
 
-export const getJobs = async () => {
-  const response = await publicApi.get("/jobs");
+export const getJobs = async ({ sort, search, types }) => {
+  const params = new URLSearchParams();
 
+  if (types) params.append("type", types);
+  if (search) params.append("q", search);
+  if (sort) params.append("_sort", sort);
+
+  const query = params.toString();
+
+  const response = await publicApi.get(`/jobs${query ? `?${query}` : ""}`);
   return response?.data;
 };
 
