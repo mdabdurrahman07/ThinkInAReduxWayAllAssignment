@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getJobs, postJob } from "./jobsSliceApi";
+import { deleteJob, getJobs, postJob, updateJob } from "./jobsSliceApi";
 
 
 // declaring InitialState
@@ -9,6 +9,8 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: "",
+  editing:{},
+  editMode: false
 };
 
 // declaring async thunks
@@ -30,7 +32,7 @@ export const createJobs = createAsyncThunk("Jobs/createJobs", async (data) => {
 // update single job
 
 export const modifyJobs = createAsyncThunk("Jobs/modifyJobs",async ({ id, data }) => {
-    const job = await postJob(id, data);
+    const job = await updateJob(id, data);
     return job;
   }
 );
@@ -38,13 +40,23 @@ export const modifyJobs = createAsyncThunk("Jobs/modifyJobs",async ({ id, data }
 // delete single job
 
 export const removeJobs = createAsyncThunk("Jobs/removeJobs", async (id) => {
-  const job = await postJob(id);
+  const job = await deleteJob(id);
   return job;
 });
 
 const jobsSlice = createSlice({
     name: 'jobs',
     initialState,
+    reducers:{
+    activeEditing: (state , action) =>{
+      state.editMode= true
+      state.editing = action.payload
+    },
+    inActiveEditing: (state) =>{
+        state.editMode = false
+        state.editing = {}
+    }
+    },
     extraReducers: (builder) =>{
         builder
 
@@ -123,5 +135,7 @@ const jobsSlice = createSlice({
 
     }
 })
+
+export const {activeEditing , inActiveEditing} = jobsSlice.actions
 
 export default jobsSlice.reducer

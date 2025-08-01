@@ -1,10 +1,12 @@
-import { createJobs } from "../../Redux/Features/Jobs/jobsSlice";
+import { createJobs, modifyJobs } from "../../Redux/Features/Jobs/jobsSlice";
 import SideBar from "../Header/SideBar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const AddJob = () => {
+  const { editMode, editing, isLoading } = useSelector((state) => state.jobs);
+
   const dispatch = useDispatch();
 
-  const handlePostJob = async (e) => {
+  const handlePostJob = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.lwsJobTitle.value;
@@ -20,6 +22,28 @@ const AddJob = () => {
         deadline,
       })
     );
+    form.reset();
+  };
+
+  const handleUpdateJob = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.lwsJobTitle.value;
+    const type = form.lwsJobType.value;
+    const salary = form.lwsJobSalary.value;
+    const deadline = form.lwsJobDeadline.value;
+
+    dispatch(
+      modifyJobs({
+        id: editing?.id,
+        data: {
+          title: title,
+          type: type,
+          salary: salary,
+          deadline: deadline,
+        },
+      })
+    );
     form.reset()
   };
 
@@ -28,15 +52,25 @@ const AddJob = () => {
       <SideBar />
       <div className="lg:pl-[14rem] mt-[5.8125rem]">
         <main className="max-w-3xl rounded-lg mx-auto relative z-20 p-10 xl:max-w-none bg-[#1E293B]">
-          <h1 className="mb-10 text-center lws-section-title">Add New Job</h1>
+          <h1 className="mb-10 text-center lws-section-title">
+            {editMode === true ? "Update Job Post" : "Add New Job"}
+          </h1>
 
           <div className="max-w-3xl mx-auto">
-            <form className="space-y-6" onSubmit={handlePostJob}>
+            <form
+              className="space-y-6"
+              onSubmit={editMode ? handleUpdateJob : handlePostJob}
+            >
               <div className="fieldContainer">
                 <label className="text-sm font-medium text-slate-300">
                   Job Title
                 </label>
-                <select id="lws-JobTitle" name="lwsJobTitle" required>
+                <select
+                  id="lws-JobTitle"
+                  name="lwsJobTitle"
+                  required
+                  defaultValue={editing?.title}
+                >
                   <option value="" hidden selected>
                     Select Job
                   </option>
@@ -59,7 +93,12 @@ const AddJob = () => {
 
               <div className="fieldContainer">
                 <label>Job Type</label>
-                <select id="lws-JobType" name="lwsJobType" required>
+                <select
+                  id="lws-JobType"
+                  name="lwsJobType"
+                  required
+                  defaultValue={editing?.type}
+                >
                   <option value="" hidden selected>
                     Select Job Type
                   </option>
@@ -80,6 +119,7 @@ const AddJob = () => {
                     required
                     className="!rounded-l-none !border-0"
                     placeholder="20,00,000"
+                    defaultValue={editing?.salary}
                   />
                 </div>
               </div>
@@ -91,16 +131,18 @@ const AddJob = () => {
                   name="lwsJobDeadline"
                   id="lws-JobDeadline"
                   required
+                  defaultValue={editing?.deadline}
                 />
               </div>
 
               <div className="text-right">
                 <button
+                  disabled={isLoading}
                   type="submit"
                   id="lws-submit"
                   className="cursor-pointer btn btn-primary w-fit"
                 >
-                  Submit
+                  {editMode ? "Update" : "Submit"}
                 </button>
               </div>
             </form>

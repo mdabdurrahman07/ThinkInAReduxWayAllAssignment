@@ -1,7 +1,20 @@
 import React from "react";
+import { activeEditing, removeJobs} from "../../Redux/Features/Jobs/jobsSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Job = ({ jobs }) => {
-  const { title, type, salary, deadline } = jobs || {};
+  const dispatch = useDispatch()
+  const { title, type, salary, deadline,id } = jobs || {};
+  const navigate = useNavigate()
+  const handleEdit = () =>{
+    dispatch(activeEditing(jobs))
+    navigate("/addJobs")
+  }
+
+  const handleDelete = () =>{
+    dispatch(removeJobs(id))
+  }
   return (
     <div className="jobs-list">
       {/* <!-- Single Job 1--> */}
@@ -36,14 +49,14 @@ const Job = ({ jobs }) => {
         </div>
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
-            <button type="button" className="lws-edit btn btn-primary">
+            <button type="button" className="lws-edit btn btn-primary" onClick={handleEdit}>
               <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
               Edit
             </button>
           </span>
 
           <span className="sm:ml-3">
-            <button type="button" className="lws-delete btn btn-danger ">
+            <button type="button" className="lws-delete btn btn-danger" onClick={handleDelete}>
               <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
               Delete
             </button>

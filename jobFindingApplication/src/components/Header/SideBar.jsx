@@ -7,6 +7,7 @@ import { typesCheck } from "../../Redux/Features/Filters/FiltersSlice";
 const SideBar = () => {
   const dispatch = useDispatch();
   const { types, search, sort } = useSelector((state) => state.filters);
+  const {editMode} = useSelector((state) => state.jobs)
   useEffect(() => {
     if (types) {
       dispatch(fetchJobs({ types }));
@@ -66,7 +67,7 @@ const SideBar = () => {
           <li>
             <Link to="/addJobs" className="main-menu" id="lws-addJob-menu">
               <i className="fa-solid fa-file-circle-plus"></i>
-              <span>Add NewJob</span>
+              <span>{editMode ? "Update Job" : "Add NewJob"}</span>
             </Link>
           </li>
         </ul>
