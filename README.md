@@ -1,5 +1,6 @@
 
-# Project Title
+# ThinkInAReduxWayAllAssignment
+
 In this Github repo I'm giving all of my LWS assignment solution and live project link 
 
 
