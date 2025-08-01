@@ -38,17 +38,17 @@ Vanilla JS with redux toolkit
 
 To get it working, follow these steps:
 
-1. Go to the GitHub repository:  [Link](https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/)
-2. Clone the project:
+
+1. Clone the project:
    ```bash
-   git clone <repository-url>
-3. Go to
+   git clone https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/
+2. Go to
    ```bash
    cd bookStoreApplication cd server
-4. Install NPM packages
+3. Install NPM packages
    ```bash
    npm install
-5. Start The server 
+4. Start The server 
    ```bash
    npm start
 ## Assignment 6
@@ -59,16 +59,15 @@ To get it working, follow these steps:
 
 To get it working, follow these steps:
 
-1. Go to the GitHub repository:  [Link](https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/)
-2. Clone the project:
+1. Clone the project:
    ```bash
-   git clone <repository-url>
-3. Go to
+   git clone https://github.com/mdabdurrahman07/ThinkInAReduxWayAllAssignment/
+2. Go to
    ```bash
-   cd blogApplication cd server
-4. Install NPM packages
+   cd bookStoreApplication cd server
+3. Install NPM packages
    ```bash
    npm install
-5. Start The server 
+4. Start The server 
    ```bash
    npm start
