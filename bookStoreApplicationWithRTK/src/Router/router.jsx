@@ -13,5 +13,9 @@ export const router = createBrowserRouter([
       { path: "/addBook", element: <AddBook /> },
       { path: "/editBook", element: <EditBook /> },
     ],
+
+    future: {
+      v7_startTransition: true, // ✅ Opt in early, removes warning
+    },
   },
 ]);

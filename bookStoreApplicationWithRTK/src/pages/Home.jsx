@@ -4,7 +4,7 @@ import Tabs from "../components/Tabs/Tabs";
 
 const Home = () => {
   return (
-    <div class="py-12 px-6 2xl:px-6 container">
+    <div className="py-12 px-6 2xl:px-6 container">
       <Tabs/>
       <BookCardsContainer />
     </div>

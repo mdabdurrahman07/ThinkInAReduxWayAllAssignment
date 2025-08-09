@@ -5,4 +5,6 @@ export default configureStore({
   reducer: {
     [BookApi.reducerPath]: BookApi.reducer,
   },
+  middleware: (getDefaultMiddlewares) =>
+    getDefaultMiddlewares().concat(BookApi.middleware),
 });
