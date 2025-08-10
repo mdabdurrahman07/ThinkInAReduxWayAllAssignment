@@ -1,21 +1,34 @@
-import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { checkSearch } from "../../redux/features/Filters/FiltersSlice";
 
 const Nav = () => {
+  const dispatch = useDispatch();
+  const handleSearch = (e) => {
+    dispatch(checkSearch(e.target.value));
+  };
   return (
     <nav className="py-4 2xl:px-6">
       <div className="container flex items-center justify-between">
-        <Link to="/"><img src="/logo.svg" width="150px" className="object-contain" /></Link>
+        <Link to="/">
+          <img src="/logo.svg" width="150px" className="object-contain" />
+        </Link>
 
         <ul className="hidden md:flex items-center space-x-6">
-          <Link to="/"
+          <Link
+            to="/"
             className="font-semibold cursor-pointer"
             href="index.html"
             id="lws-bookStore"
           >
             <li>Book Store</li>
           </Link>
-          <Link to="/addBook" className="cursor-pointer" href="AddBook.html" id="lws-addBook">
+          <Link
+            to="/addBook"
+            className="cursor-pointer"
+            href="AddBook.html"
+            id="lws-addBook"
+          >
             <li>Add Book</li>
           </Link>
         </ul>
@@ -39,6 +52,7 @@ const Nav = () => {
               placeholder="Filter books..."
               className="search"
               id="lws-search"
+              onChange={handleSearch}
             />
           </div>
         </form>

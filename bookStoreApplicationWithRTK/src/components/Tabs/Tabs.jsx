@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleTabs } from "../../redux/features/Filters/FiltersSlice";
 
 const Tabs = () => {
   const dispatch = useDispatch();
+  const tab = useSelector((state) => state.Filters.tab);
 
   return (
     <div className="order-2 xl:-order-1">
@@ -12,13 +13,17 @@ const Tabs = () => {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => dispatch(toggleTabs("all"))}
-            className="lws-filter-btn active-filter"
+            className={`lws-filter-btn r ${
+              tab === "all" ? "active-filter" : ""
+            }`}
           >
             All
           </button>
           <button
             onClick={() => dispatch(toggleTabs("featured"))}
-            className="lws-filter-btn"
+            className={`lws-filter-btn r ${
+              tab === "featured" ? "active-filter" : ""
+            }`}
           >
             Featured
           </button>

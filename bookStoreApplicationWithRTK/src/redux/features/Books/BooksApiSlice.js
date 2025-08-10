@@ -4,10 +4,11 @@ export const BookApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }),
   endpoints: (build) => ({
     getBooks: build.query({
-      query: (tab) => {
+      query: ({ tab, search }) => {
         let url = "/books";
         const params = new URLSearchParams();
         if (tab === "featured") params.append("featured", true);
+        if (search) params.append("q", search);
         return `${url}?${params.toString()}`;
       },
     }),

@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 
 const BookCardsContainer = () => {
   const tab = useSelector((state) => state.Filters.tab)
-  const { data: books, isLoading, isError, error } = useGetBooksQuery(tab);
+  const search = useSelector((state) => state.Filters.search)
+  const { data: books, isLoading, isError, error } = useGetBooksQuery({tab,search});
   let content = null;
   if (isLoading) {
     content = <Loading />;
