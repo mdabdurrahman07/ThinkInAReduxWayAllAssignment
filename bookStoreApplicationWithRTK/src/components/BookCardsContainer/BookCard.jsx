@@ -56,7 +56,7 @@ const BookCard = ({books}) => {
           </h4>
           <p className="lws-author">{author}</p>
           <Ratings rating={rating}/>
-          <p className="lws-price">{price}</p>
+          <p className="lws-price">{price}$</p>
         </div>
       </div>
     </div>

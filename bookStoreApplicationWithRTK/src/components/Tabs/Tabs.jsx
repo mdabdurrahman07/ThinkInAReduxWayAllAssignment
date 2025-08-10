@@ -1,5 +1,3 @@
-import React from "react";
-
 const Tabs = () => {
   return (
     <div className="order-2 xl:-order-1">

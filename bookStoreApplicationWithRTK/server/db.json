@@ -26,6 +26,42 @@
       "rating": 4,
       "featured": true,
       "id": 4
+    },
+    {
+      "name": "The Emperor of Gladness: Oprah's Book Club: A Novel",
+      "author": "Ocean Vuong",
+      "thumbnail": "https://m.media-amazon.com/images/I/71EzqzMiadL._SY466_.jpg",
+      "price": "57",
+      "rating": "4",
+      "featured": true,
+      "id": 5
+    },
+    {
+      "name": "King of Ashes",
+      "author": "S. A. Cosby",
+      "thumbnail": "https://m.media-amazon.com/images/I/8150S2FjgIL._SY466_.jpg",
+      "price": "26",
+      "rating": "5",
+      "featured": true,
+      "id": 6
+    },
+    {
+      "name": "Atomic Habits",
+      "author": "James Clear",
+      "thumbnail": "https://m.media-amazon.com/images/I/81ANaVZk5LL._SY466_.jpg",
+      "price": "14",
+      "rating": "5",
+      "featured": false,
+      "id": 7
+    },
+    {
+      "name": "Tenacious",
+      "author": "Mike Hogan",
+      "thumbnail": "https://m.media-amazon.com/images/I/81WsbkWVViL._SY466_.jpg",
+      "price": "33.47",
+      "rating": "4",
+      "featured": true,
+      "id": 8
     }
   ]
 }
