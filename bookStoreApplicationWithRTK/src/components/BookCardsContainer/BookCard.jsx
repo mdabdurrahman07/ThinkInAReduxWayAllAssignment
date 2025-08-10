@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Ratings from "../Ratings/Ratings";
+import { useDeleteBookMutation } from "../../redux/features/Books/BooksApiSlice";
 
-const BookCard = ({books}) => {
-  const {name , author , thumbnail, price, rating, featured} = books || {}
+const BookCard = ({ books }) => {
+  const { name, author, thumbnail, price, rating, featured, id } = books || {};
+  const [deleteBook] = useDeleteBookMutation(id);
+  const handleDelete = () => {
+    if (id) {
+      deleteBook(id);
+      alert("Book deleted successfully");
+    }
+  };
   return (
     <div className="book-card">
       <img
@@ -13,26 +21,28 @@ const BookCard = ({books}) => {
       />
       <div className="flex-1 h-full pr-2 pt-2 flex flex-col">
         <div className="flex items-center justify-between">
-          <span className={`${featured ? "lws-badge" : ""}`}>{featured && "featured"}</span>
+          <span className={`${featured ? "lws-badge" : ""}`}>
+            {featured && "featured"}
+          </span>
           <div className="text-gray-500 space-x-2">
-           <Link to="/editBook">
-            <button className="lws-edit ">
-              <svg
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                />
-              </svg>
-            </button>
-           </Link>
-            <button className="lws-deleteBook">
+            <Link to={`/editBook/${id}`}>
+              <button className="lws-edit ">
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  />
+                </svg>
+              </button>
+            </Link>
+            <button className="lws-deleteBook" onClick={handleDelete}>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -51,11 +61,9 @@ const BookCard = ({books}) => {
         </div>
 
         <div className="space-y-2 mt-4 h-full">
-          <h4 className="lws-book-name">
-          {name}
-          </h4>
+          <h4 className="lws-book-name">{name}</h4>
           <p className="lws-author">{author}</p>
-          <Ratings rating={rating}/>
+          <Ratings rating={rating} />
           <p className="lws-price">{price}$</p>
         </div>
       </div>

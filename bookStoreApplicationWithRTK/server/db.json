@@ -4,7 +4,7 @@
       "name": "Slow Horses (Deluxe Edition)",
       "author": "Mick Herron",
       "thumbnail": "https://m.media-amazon.com/images/I/51Ga5GuElyL._SX331_BO1,204,203,200_.jpg",
-      "price": 14,
+      "price": "14.99",
       "rating": 3,
       "featured": false,
       "id": 1
@@ -13,7 +13,7 @@
       "name": "The Last Thing He Told Me: A Novel",
       "author": "Laura Dave",
       "thumbnail": "https://m.media-amazon.com/images/P/1501171348.01._SCLZZZZZZZ_SX500_.jpg",
-      "price": 13.99,
+      "price": "17.99",
       "rating": 4,
       "featured": false,
       "id": 2
@@ -49,19 +49,10 @@
       "name": "Atomic Habits",
       "author": "James Clear",
       "thumbnail": "https://m.media-amazon.com/images/I/81ANaVZk5LL._SY466_.jpg",
-      "price": "14",
+      "price": "15.00",
       "rating": "5",
       "featured": false,
       "id": 7
-    },
-    {
-      "name": "Tenacious",
-      "author": "Mike Hogan",
-      "thumbnail": "https://m.media-amazon.com/images/I/81WsbkWVViL._SY466_.jpg",
-      "price": "33.47",
-      "rating": "4",
-      "featured": true,
-      "id": 8
     }
   ]
 }
