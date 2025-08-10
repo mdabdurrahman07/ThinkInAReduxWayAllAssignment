@@ -2,9 +2,11 @@ import React from "react";
 import BookCard from "./BookCard";
 import { useGetBooksQuery } from "../../redux/features/Books/BooksApiSlice";
 import Loading from "../Loading/Loading";
+import { useSelector } from "react-redux";
 
 const BookCardsContainer = () => {
-  const { data: books, isLoading, isError, error } = useGetBooksQuery();
+  const tab = useSelector((state) => state.Filters.tab)
+  const { data: books, isLoading, isError, error } = useGetBooksQuery(tab);
   let content = null;
   if (isLoading) {
     content = <Loading />;
